@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>POE BAWT</title>
+
+</head>
+
+<body>
+
+<div id="main">
+  <form id="speak_form" method='post' action='/speak'>
+    <input type='text' name='message' placeholder='poe shall say'> 
+    <input type='button' value='submit' name='submit' text='speak'>
+  </form>
+</div>
+
+<script type='text/javascript' src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/static/js/index.js"></script>
+
+</body>
+</html>

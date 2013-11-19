@@ -1,0 +1,9 @@
+body {
+    background: #000 url('/static/cat_bg.png') fixed no-repeat;
+    color: #fff;
+}
+
+a {
+    color: #ca94de;
+    text-decoration: none;
+}
