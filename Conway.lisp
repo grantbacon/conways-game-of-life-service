@@ -1,5 +1,6 @@
 (include-book "avl-rational-keys" :dir :teachpacks)
 (include-book "io-utilities" :dir :teachpacks)
+(include-book "io-utilities-ex" :dir :teachpacks)
 (set-state-ok t)
 
 
@@ -14,11 +15,41 @@
 ;
 ;(defun build-next-generation-cell (width height x y last-gen next-gen)
 ;   )
-;(defun stdin->lines (state)
-;   )
-;
-;(defun string-list->stdout (state)
-;   )
+
+(defun stdin->string (state)
+   (mv-let (chli error state)
+           (let ((channel *standard-ci*))
+              (if (null channel)
+                  (mv nil
+                      "Error while opening stdin for input"
+                      state)
+                  (mv-let (chlist chnl state)
+                          (read-n-chars 4000000000 '() channel state)
+                     (let ((state (close-input-channel chnl state)))
+                       (mv chlist nil state)))))
+      (mv (reverse (chrs->str chli)) error state)))
+
+(defun string-list->stdout (strli state)
+  (let ((channel *standard-co*))
+     (if (null channel)
+         (mv "Error while opening stdout"
+             state)
+         (mv-let (channel state)
+                 (write-all-strings strli channel state)
+            (let ((state (close-output-channel channel state)))
+              (mv nil state))))))
+
+(defun stdin->lines (state)
+  (mv-let (chnl state) 
+		 (mv *standard-ci* state)
+     (if (null chnl)
+         (mv "Error opening standard input" state)
+         (mv-let (c1 state)                       ; get one char ahead
+                 (read-char$ chnl state)
+            (mv-let (rv-lines state)      ; get line, record backwards
+                    (rd-lines 4000000000 c1 nil chnl state)
+               (let* ((state (close-input-channel chnl state)))
+                     (mv (reverse rv-lines) state))))))); rev, deliver
 
 ;added width input
 (defun get-avl-key (x y width)
@@ -61,6 +92,8 @@
                 
 
 ;test input
+(defun main (state)
+   )
 (num-live-neighbors 0 4 4 1 1 
                     (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
                                                        (coerce "xxxx" 'list)
