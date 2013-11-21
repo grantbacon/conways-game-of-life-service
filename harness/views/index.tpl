@@ -18,9 +18,9 @@
 
 <hr>
 
-<form>
-    height: <input type="text" name="height" />
-    width: <input type="text" name="width" />
+<form name="controls">
+    height: <input class="height-box" type="text" name="height" />
+    width: <input class="width-box" type="text" name="width" />
     <br>
     <button type="submit" name="play" value="play">
     play </button>

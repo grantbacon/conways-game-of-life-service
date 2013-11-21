@@ -1,13 +1,16 @@
 from bottle import run, route, request, template, static_file
-from config import Config
 import subprocess
 import json
 
-cfg = Config('gameoflife.cfg')
+
+ADDR='localhost'
+PORT='8080'
+STATIC_DIR='static'
+
 
 @route('/static/<filepath:path>')
 def static(filepath):
-	return static_file(filepath, root=cfg.static_dir)
+	return static_file(filepath, root=STATIC_DIR)
 
 @route('/about')
 def about():
@@ -19,8 +22,8 @@ def index():
 
 @route('/nextgen')
 def nextgen():
-    acl2 = subprocess.Popen('/Users/grant/repo/harness/game_of_life.sh', stdout=subprocess.PIPE)
+    acl2 = subprocess.Popen('/Users/grant/repo/harness/game_of_life.sh', stdout=subprocess.PIPE, stdin=subprocess.PIPE)
     return acl2.stdout.read()
 
 
-run(host=cfg.addr, port=cfg.port)
+run(host=ADDR, port=PORT)

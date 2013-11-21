@@ -11,8 +11,7 @@ $(document).ready(function() {
         };
     })(jQuery);
 
-
-    $('#form').submit(function(){
+    $('.play').submit(function(){
         $.ajax({
             url: '/nextgen',
             type: 'POST',
@@ -21,4 +20,12 @@ $(document).ready(function() {
         });
         return false;
     });
+
+    $('table').submit(function() {
+
+    });
+
+    $('.class-box').change(updateGrid);
+
+
 });
