@@ -58,6 +58,19 @@
                                       last-gen)))
        last-gen))
 
+(defun strings->char-lists (lst)
+   (if (null lst)
+       nil
+       (cons (coerce (car lst) 'list) (strings->char-lists (cdr lst)))))
+
+(defun stdin->avl-tree (state)
+   (mv-let (input-lines state)
+           (stdin->lines state)
+      (let* (#|(height (len input-lines))|#
+             (width (length (car input-lines))))
+            (mv (input-lines->avl-tree 0 0 width (strings->char-lists input-lines) (empty-tree)) state))))
+            ;(mv (input-lines->avl-tree 0 0 width (strings->char-lists input-lines) (empty-tree)) width height state))))
+
 
 ;added n counter
 (defun num-live-neighbors (n width height x y last-gen)
@@ -74,9 +87,11 @@
 (defun build-next-generation-cell (width height x y last-gen next-gen)
    (let* ((n (num-live-neighbors 0 width height x y last-gen))
           (result (if (null (avl-retrieve last-gen (get-avl-key x y width)))
-                      (if (= n 3) #\x #\space)
-                      (if (or (< n 2) (> n 3)) #\space #\x))))
-         (avl-insert next-gen (get-avl-key x y width) result)))
+                      (if (= n 3) "x" nil)
+                      (if (or (< n 2) (> n 3)) nil "x"))))
+         (if result
+             (avl-insert next-gen (get-avl-key x y width) result)
+             next-gen)))
                 
 ; added curx counter
 (defun build-next-generation-row (width height curx y last-gen next-gen)
@@ -95,18 +110,18 @@
 
 (defun avl-tree->output-line (width curx y next-gen)
    (if (< curx width)
-       (cons (cdr (avl-retrieve next-gen (get-avl-key curx y width)))
+       (string-append (if (avl-retrieve next-gen (get-avl-key curx y width)) "<td class=\"live\">&nbsp;</td>" "<td>&nbsp;</td>")
              (avl-tree->output-line width (1+ curx) y next-gen))
        nil))
 
 (defun avl-tree->output-lines (width height cury next-gen)
    (if (< cury height)
-       (cons (coerce (avl-tree->output-line width 0 cury next-gen) 'string)
+       (cons (string-append "<tr>" (string-append (avl-tree->output-line width 0 cury next-gen) "</tr>"))
              (avl-tree->output-lines width height (1+ cury) next-gen))
        nil))
 
 ;test input
-(num-live-neighbors 0 4 4 1 1 
+#|(num-live-neighbors 0 4 4 1 1 
                     (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
                                                        (coerce "xxxx" 'list)
                                                        (coerce "x  x" 'list)
@@ -144,11 +159,8 @@
                                                                                               (coerce "    " 'list))
                                                                                               (empty-tree))
                                                                (empty-tree)))
+|#
 
 (defun main (state)
-	(string-list->stdout (avl-tree->output-lines 4 4 0 (build-next-generation 4 4 0 (input-lines->avl-tree 0 0 4 (list (coerce " x  " 'list)
-		                                                                                          (coerce "xx  " 'list)
-		                                                                                          (coerce "    " 'list)
-		                                                                                          (coerce "    " 'list))
-		                                                                                          (empty-tree))
+	(string-list->stdout (avl-tree->output-lines 4 4 0 (build-next-generation 4 4 0 (stdin->avl-tree state)
 		                                                           (empty-tree))) state))
