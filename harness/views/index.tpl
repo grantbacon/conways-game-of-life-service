@@ -13,7 +13,7 @@
 <h1> the game of life </h1>
 <hr>
 
-<table>
+<table class='life-table' border='1px'>
 </table>
 
 <hr>
