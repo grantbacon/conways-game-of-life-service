@@ -22,7 +22,7 @@ def index():
 
 @route('/nextgen')
 def nextgen():
-    acl2 = subprocess.Popen('/Users/grant/repo/harness/game_of_life.sh', stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    acl2 = subprocess.Popen('/Users/grant/repo/harness/game_of_life.sh', stdout=subprocess.PIPE)
     return acl2.stdout.read()
 
 

@@ -18,13 +18,12 @@
 
 <hr>
 
-<form name="controls">
+<form action="#" name="controls">
     height: <input class="height-box" type="text" name="height" />
     width: <input class="width-box" type="text" name="width" />
     <br>
-    <button type="submit" name="play" value="play">
-    play </button>
-    <button type="submit" name="stop" value="stop"> stop </button>
+    <button type="button" class="play"> play </button>
+    <button type="button" class="stop"> stop </button>
 </form>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+/*
     (function ($){
         $.fn.serializeJSON=function(){
             var json = {};
@@ -11,7 +11,7 @@ $(document).ready(function() {
             return JSON.stringify(json);
         };
     })(jQuery);
-
+*/
     function updateGrid() {
 
         var height = $('.height-box').val();
@@ -28,23 +28,22 @@ $(document).ready(function() {
             for (var j=0; j < width; j++)
              {
             $(this).append('<td>x</td>');
-             }});
-        
+        }});
     }
-
-    $('.play').submit(function(){
-        $.ajax({
-            url: '/nextgen',
-            type: 'POST',
-            data: $('#form').serializeJSON(),
-            dataType: 'text'
-        });
-        return false;
-    });
-
 
     $('.height-box').change(updateGrid);
     $('.width-box').change(updateGrid);
 
+
+    $('.play').click(function(){
+        $.ajax({
+            url: '/nextgen',
+            type: 'GET'
+//            data: null,
+//            dataType: 'text'
+        }).done(function(data) {
+            $('.life-table').empty().append('<p>'+data+'</p>');
+        });
+    });
 
 });
