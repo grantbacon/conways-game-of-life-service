@@ -4,18 +4,6 @@
 (set-state-ok t)
 
 
-
-;(defun main (state)
-;   )
-;(defun build-next-generation (width height last-gen next-gen)
-;   )
-;
-;(defun build-next-generation-row (width height y last-gen next-gen)
-;   )
-;
-;(defun build-next-generation-cell (width height x y last-gen next-gen)
-;   )
-
 (defun stdin->string (state)
    (mv-let (chli error state)
            (let ((channel *standard-ci*))
@@ -88,15 +76,79 @@
           (result (if (null (avl-retrieve last-gen (get-avl-key x y width)))
                       (if (= n 3) #\x #\space)
                       (if (or (< n 2) (> n 3)) #\space #\x))))
-         (avl-insert next-gen ())))
+         (avl-insert next-gen (get-avl-key x y width) result)))
                 
+; added curx counter
+(defun build-next-generation-row (width height curx y last-gen next-gen)
+   (let* ((new-tree (build-next-generation-cell width height curx y last-gen next-gen))
+          (next-x (1+ curx)))
+         (if (= next-x width)
+             new-tree
+             (build-next-generation-row width height next-x y last-gen new-tree))))
+
+(defun build-next-generation (width height cury last-gen next-gen)
+   (let* ((new-tree (build-next-generation-row width height 0 cury last-gen next-gen))
+          (next-y (1+ cury)))
+         (if (= next-y height)
+             new-tree
+             (build-next-generation width height next-y last-gen new-tree))))
+
+(defun avl-tree->output-line (width curx y next-gen)
+   (if (< curx width)
+       (cons (cdr (avl-retrieve next-gen (get-avl-key curx y width)))
+             (avl-tree->output-line width (1+ curx) y next-gen))
+       nil))
+
+(defun avl-tree->output-lines (width height cury next-gen)
+   (if (< cury height)
+       (cons (coerce (avl-tree->output-line width 0 cury next-gen) 'string)
+             (avl-tree->output-lines width height (1+ cury) next-gen))
+       nil))
 
 ;test input
-(defun main (state)
-   )
 (num-live-neighbors 0 4 4 1 1 
                     (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
                                                        (coerce "xxxx" 'list)
                                                        (coerce "x  x" 'list)
                                                        (coerce "   x" 'list))
                                            (empty-tree)))
+
+; test input 2
+(build-next-generation-row 4 4 0 0 (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
+                                                                                                          (coerce "xxxx" 'list)
+                                                                                                          (coerce "x  x" 'list)
+                                                                                                          (coerce "   x" 'list))
+                                                                                              (empty-tree))
+                                                               (empty-tree))
+
+; test input 3
+(avl-tree->output-line 4 0 0 (build-next-generation-row 4 4 0 0 (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
+                                                                                                          (coerce "xxxx" 'list)
+                                                                                                          (coerce "x  x" 'list)
+                                                                                                          (coerce "   x" 'list))
+                                                                                              (empty-tree))
+                                                               (empty-tree)))
+
+; test input 4
+(avl-tree->output-lines 4 4 0 (build-next-generation 4 4 0 (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
+                                                                                              (coerce "xxxx" 'list)
+                                                                                              (coerce "x  x" 'list)
+                                                                                              (coerce "   x" 'list))
+                                                                                              (empty-tree))
+                                                               (empty-tree)))
+
+; test input 5
+(avl-tree->output-lines 4 4 0 (build-next-generation 4 4 0 (input-lines->avl-tree 0 0 4 (list (coerce " x  " 'list)
+                                                                                              (coerce "xx  " 'list)
+                                                                                              (coerce "    " 'list)
+                                                                                              (coerce "    " 'list))
+                                                                                              (empty-tree))
+                                                               (empty-tree)))
+
+(defun main (state)
+	(string-list->stdout (avl-tree->output-lines 4 4 0 (build-next-generation 4 4 0 (input-lines->avl-tree 0 0 4 (list (coerce " x  " 'list)
+		                                                                                          (coerce "xx  " 'list)
+		                                                                                          (coerce "    " 'list)
+		                                                                                          (coerce "    " 'list))
+		                                                                                          (empty-tree))
+		                                                           (empty-tree))) state))
