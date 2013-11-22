@@ -25,7 +25,6 @@ def index():
 @route('/nextgen')
 def nextgen():
     executable = os.path.join(os.path.dirname(os.path.abspath(__file__)), GAME_OF_LIFE_EXEC)
-    print executable
     acl2 = subprocess.Popen(executable, stdout=subprocess.PIPE)
     return acl2.stdout.read()
 

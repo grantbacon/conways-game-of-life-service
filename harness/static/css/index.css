@@ -1,0 +1,33 @@
+body {
+    font-family: Helvetica, Arial, sans;
+    margin: 0;
+    height: auto;
+}
+
+
+h1 {
+    border-bottom: 5px solid black;
+    font-size: 35pt;
+    text-align: center;
+    margin-top: 2em;
+}
+
+.controls, .game {
+    margin-left: 3em;
+    margin-top: 1em;
+    display: block;
+    text-align: center;
+}
+
+.game table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* represents living cells */
+
+.live {
+    background-color: #000;
+
+}
+

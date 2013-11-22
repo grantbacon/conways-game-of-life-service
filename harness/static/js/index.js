@@ -11,6 +11,16 @@ $(document).ready(function() {
             return JSON.stringify(json);
         };
     })(jQuery);
+
+
+    (function ($){
+        $.fn.encodeGrid = function(){
+            var data = "";
+            
+            return data;
+        }
+    })(jQuery);
+
 */
     function updateGrid() {
 
@@ -27,7 +37,7 @@ $(document).ready(function() {
         $('.life-table tr').each(function(rowNum) {
             for (var j=0; j < width; j++)
              {
-            $(this).append('<td>x</td>');
+            $(this).append('<td>&nbsp;&nbsp;</td>');
         }});
     }
 
