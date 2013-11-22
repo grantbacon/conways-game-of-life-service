@@ -46,4 +46,10 @@ Work in progress:
         });
     });
 
+
+    $('td').live('click', function() {
+        $(this).toggleClass('live');
+    });
+
+// end document ready
 });
