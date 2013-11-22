@@ -1,17 +1,6 @@
 $(document).ready(function() {
 /*
-    (function ($){
-        $.fn.serializeJSON=function(){
-            var json = {};
-            jQuery.map($(this).serializeArray(), function(n, i) {
-                if (n['value'] !== '') {
-                    json[n['name']] = n['value']
-                }
-            });
-            return JSON.stringify(json);
-        };
-    })(jQuery);
-
+Work in progress:
 
     (function ($){
         $.fn.encodeGrid = function(){
@@ -48,9 +37,10 @@ $(document).ready(function() {
     $('.play').click(function(){
         $.ajax({
             url: '/nextgen',
-            type: 'GET'
-//            data: null,
-//            dataType: 'text'
+            type: 'POST',
+                // This will be the encoded grid data used as POST data.
+            data: 'this is a test, bush did 9/11',
+            dataType: 'text'
         }).done(function(data) {
             $('.life-table').empty().append('<p>'+data+'</p>');
         });
