@@ -1,16 +1,29 @@
 $(document).ready(function() {
-/*
-Work in progress:
 
+
+    // Add an encodeGrid function to jQuery so it can be used
+    // with the table element
     (function ($){
         $.fn.encodeGrid = function(){
             var data = "";
+            var isLiving = function(element) {           
+                if ($(element).hasClass('live')) {
+                    return "X";
+                } else {
+                    return " ";
+                }
+            }
             
+            // Cycle through each row in the table
+            $(this).find('tr').each(function() {
+                // Map isLiving to the set of TD elements
+                data += $.map($(this).find('td'), isLiving).join('') + '\n';
+            });
+
             return data;
         }
     })(jQuery);
 
-*/
     function updateGrid() {
 
         var height = $('.height-box').val();
@@ -39,13 +52,12 @@ Work in progress:
             url: '/nextgen',
             type: 'POST',
                 // This will be the encoded grid data used as POST data.
-            data: 'this is a test, bush did 9/11',
+            data: $('.life-table').encodeGrid(),
             dataType: 'text'
         }).done(function(data) {
             $('.life-table').empty().append('<p>'+data+'</p>');
         });
     });
-
 
     $('td').live('click', function() {
         $(this).toggleClass('live');
