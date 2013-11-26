@@ -25,12 +25,6 @@ def about():
 def index():
     return template('index')
 
-@route('/nextgen')
-def nextgen():
-    executable = relative_path(GAME_OF_LIFE_EXEC)
-    acl2 = subprocess.Popen(executable, stdout=subprocess.PIPE)
-    return acl2.stdout.read()
-
 @route('/nextgen', method='POST')
 def nextgen_post():
     executable = relative_path(GAME_OF_LIFE_EXEC)
