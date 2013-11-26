@@ -55,7 +55,7 @@ $(document).ready(function() {
             data: $('.life-table').encodeGrid(),
             dataType: 'text'
         }).done(function(data) {
-            $('.life-table').empty().append('<p>'+data+'</p>');
+            $('.life-table').empty().append(data);
         });
     });
 

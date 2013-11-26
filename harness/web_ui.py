@@ -7,7 +7,7 @@ import os
 ADDR='localhost'
 PORT='8080'
 STATIC_DIR='static'
-GAME_OF_LIFE_EXEC='game_of_life.py'
+GAME_OF_LIFE_EXEC='Conway'
 
 
 def relative_path(suffix):
