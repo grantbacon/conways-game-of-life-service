@@ -8,7 +8,7 @@ $(document).ready(function() {
             var data = "";
             var isLiving = function(element) {           
                 if ($(element).hasClass('live')) {
-                    return "X";
+                    return "x";
                 } else {
                     return " ";
                 }
