@@ -39,7 +39,7 @@ $(document).ready(function() {
         $('.life-table tr').each(function(rowNum) {
             for (var j=0; j < width; j++)
              {
-            $(this).append('<td>&nbsp;&nbsp;</td>');
+            $(this).append('<td>&nbsp;</td>');
         }});
     }
 

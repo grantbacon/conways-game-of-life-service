@@ -24,6 +24,10 @@ h1 {
     margin-right: auto;
 }
 
+td {
+    min-width: 20px;
+}
+
 /* represents living cells */
 
 .live {
