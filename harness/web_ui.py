@@ -5,7 +5,7 @@ import os
 
 
 ADDR='localhost'
-PORT='8080'
+PORT='8085'
 STATIC_DIR='static'
 GAME_OF_LIFE_EXEC='Conway'
 
