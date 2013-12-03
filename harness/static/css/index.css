@@ -28,6 +28,22 @@ td {
     min-width: 20px;
 }
 
+td::selection {
+	background: #fff;
+}
+
+td::-moz-selection {
+	background: #fff;
+}
+
+.live::selection {
+	background: #000;
+}
+
+.live::-moz-selection {
+	background: #000;
+}
+
 /* represents living cells */
 
 .live {
