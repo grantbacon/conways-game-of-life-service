@@ -50,7 +50,7 @@
             (integerp width)
             (tree? last-gen)                 
             (consp input-lines))
-       (if (null (car input-lines))
+       (if (endp (car input-lines))
            (input-lines->avl-tree 0 (1+ y) width (cdr input-lines) last-gen)
            (input-lines->avl-tree (1+ x) y width (cons (cdar input-lines) (cdr input-lines))
                                   (if (equal (car (car input-lines)) #\x)
@@ -59,7 +59,7 @@
        last-gen))
 
 (defun strings->char-lists (lst)
-   (if (null lst)
+   (if (endp lst)
        nil
        (cons (coerce (car lst) 'list) (strings->char-lists (cdr lst)))))
 
@@ -74,18 +74,18 @@
 
 ;added n counter
 (defun num-live-neighbors (n width height x y last-gen)
-   (if (= n 9)
+   (if (or (= n 0) (not (natp n))) ; this should be just (if (= n 0)), but this way makes ACL2 happy
        0
-       (if (= n 4)
-           (+ 0 (num-live-neighbors (1+ n) width height x y last-gen))
-           (let* ((i (mod (+ (1- x) (floor n 3)) width))
-                  (j (mod (+ (1- y) (mod n 3)) height))
+       (if (= n 5)
+           (+ 0 (num-live-neighbors (1- n) width height x y last-gen))
+           (let* ((i (mod (+ (1- x) (floor (1- n) 3)) width))
+                  (j (mod (+ (1- y) (mod (1- n) 3)) height))
                   (key (get-avl-key i j width))
                   (live (if (null (avl-retrieve last-gen key)) 0 1)))
-                 (+ live (num-live-neighbors (1+ n) width height x y last-gen))))))
+                 (+ live (num-live-neighbors (1- n) width height x y last-gen))))))
 
 (defun build-next-generation-cell (width height x y last-gen next-gen)
-   (let* ((n (num-live-neighbors 0 width height x y last-gen))
+   (let* ((n (num-live-neighbors 9 width height x y last-gen))
           (result (if (null (avl-retrieve last-gen (get-avl-key x y width)))
                       (if (= n 3) "x" nil)
                       (if (or (< n 2) (> n 3)) nil "x"))))
@@ -96,29 +96,42 @@
 ; added curx counter
 (defun build-next-generation-row (width height curx y last-gen next-gen)
    (let* ((new-tree (build-next-generation-cell width height curx y last-gen next-gen))
-          (next-x (1+ curx)))
-         (if (= next-x width)
+          (next-x (1- curx)))
+         (if (or (= curx 0) (not (natp curx))) ; should just be (if (= curx 0), but this way makes ACL2 admit the function
              new-tree
              (build-next-generation-row width height next-x y last-gen new-tree))))
 
 (defun build-next-generation (width height cury last-gen next-gen)
-   (let* ((new-tree (build-next-generation-row width height 0 cury last-gen next-gen))
-          (next-y (1+ cury)))
-         (if (= next-y height)
+   (let* ((new-tree (build-next-generation-row width height (- width 1) cury last-gen next-gen))
+          (next-y (1- cury)))
+         (if (or (= cury 0) (not (natp cury)))
              new-tree
              (build-next-generation width height next-y last-gen new-tree))))
 
-; Proof Pad doesn't like this because Proof Pad is buggy and doesn't like complex strings, but it works fine when compiled
+#| This function only exists because Proof Pad is buggy and completely breaks
+   if we use any string with a semicolon in it.  So we have to hack around 
+   the Proof Pad bug in ACL2 using this function. |#
+(defun tablecell (live)
+   (let* ((semicolon (coerce (list (code-char 59)) 'string))
+          (cell-part2 (string-append (string-append "&nbsp" semicolon) "</td>")))
+         (if live
+             (string-append "<td class='live'>" cell-part2)
+             (string-append "<td>" cell-part2))
+          ))
+
+
 (defun avl-tree->output-line (width curx y next-gen)
-   (if (< curx width)
-       (string-append (if (avl-retrieve next-gen (get-avl-key curx y width)) "<td class=\"live\">&nbsp;</td>" "<td>&nbsp;</td>")
-             (avl-tree->output-line width (1+ curx) y next-gen))
+   (if (and (> curx 0) (integerp curx))
+       ;(string-append (if (avl-retrieve next-gen (get-avl-key (- width curx) y width)) "<td class='live'>&nbsp;</td>" "<td>&nbsp;</td>")
+       (string-append (tablecell (avl-retrieve next-gen (get-avl-key (- width curx) y width))) ;"<td class='live'>&nbsp;</td>" "<td>&nbsp;</td>")
+             (avl-tree->output-line width (1- curx) y next-gen))
        nil))
 
+
 (defun avl-tree->output-lines (width height cury next-gen)
-   (if (< cury height)
-       (cons (string-append "<tr>" (string-append (avl-tree->output-line width 0 cury next-gen) "</tr>"))
-             (avl-tree->output-lines width height (1+ cury) next-gen))
+   (if (and (> cury 0) (integerp cury))
+       (cons (string-append "<tr>" (string-append (avl-tree->output-line width width (- height cury) next-gen) "</tr>"))
+             (avl-tree->output-lines width height (1- cury) next-gen))
        nil))
 
 ;test input
@@ -168,5 +181,5 @@
       (let ((avl-tree (car things))
             (width (cadr things))
             (height (caddr things)))
-           (string-list->stdout (avl-tree->output-lines width height 0 (build-next-generation width height 0 avl-tree
+           (string-list->stdout (avl-tree->output-lines width height height (build-next-generation width height (- height 1) avl-tree
 		                                                           (empty-tree))) state))))
