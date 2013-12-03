@@ -46,17 +46,27 @@ $(document).ready(function() {
     $('.height-box').change(updateGrid);
     $('.width-box').change(updateGrid);
 
+    // shitty global
+    var gameTimer = 0;
 
     $('.play').click(function(){
-        $.ajax({
-            url: '/nextgen',
-            type: 'POST',
+        gameSpeed = $('.speed-box').val();
+        gameTimer = window.setInterval(function() {
+            $.ajax({
+                url: '/nextgen',
+                type: 'POST',
                 // This will be the encoded grid data used as POST data.
-            data: $('.life-table').encodeGrid(),
-            dataType: 'text'
-        }).done(function(data) {
-            $('.life-table').empty().append(data);
-        });
+                data: $('.life-table').encodeGrid(),
+                dataType: 'text'
+            }).done(function(data) {
+                $('.life-table').empty().append(data);
+            });
+        }, gameSpeed);
+
+    });
+
+    $('.stop').click(function(){
+        window.clearInterval(gameTimer);
     });
 
     $('td').live('click', function() {

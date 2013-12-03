@@ -24,6 +24,15 @@
     <br><br>
     <button type="button" class="play"> play </button>
     <button type="button" class="stop"> stop </button>
+    <br><br>
+    <div class="speed-div">
+    <!--
+    <input type="radio" name="speed" id="speedSlow" class="speed-box" value="slow" /> <label for="speedSlow">Slow</label>
+    <input type="radio" name="speed" id="speedMedium" class="speed-box" value="medium" /> <label for="speedMedium">Medium</label>
+    <input type="radio" name="speed" id="speedFast" class="speed-box" value="medium" /> <label for="speedFast">Fast</label>
+    -->
+    evolution speed (in milliseconds):  <input type="text" class="speed-box" name="speed" />
+    </div>
 </form>
 </div>
 
