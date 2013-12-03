@@ -66,9 +66,9 @@
 (defun stdin->avl-tree (state)
    (mv-let (input-lines state)
            (stdin->lines state)
-      (let* (#|(height (len input-lines))|#
+      (let* ((height (len input-lines))
              (width (length (car input-lines))))
-            (mv (input-lines->avl-tree 0 0 width (strings->char-lists input-lines) (empty-tree)) state))))
+            (mv (list (input-lines->avl-tree 0 0 width (strings->char-lists input-lines) (empty-tree)) width height) state))))
             ;(mv (input-lines->avl-tree 0 0 width (strings->char-lists input-lines) (empty-tree)) width height state))))
 
 
@@ -108,6 +108,7 @@
              new-tree
              (build-next-generation width height next-y last-gen new-tree))))
 
+; Proof Pad doesn't like this because Proof Pad is buggy and doesn't like complex strings, but it works fine when compiled
 (defun avl-tree->output-line (width curx y next-gen)
    (if (< curx width)
        (string-append (if (avl-retrieve next-gen (get-avl-key curx y width)) "<td class=\"live\">&nbsp;</td>" "<td>&nbsp;</td>")
@@ -162,5 +163,10 @@
 |#
 
 (defun main (state)
-	(string-list->stdout (avl-tree->output-lines 4 4 0 (build-next-generation 4 4 0 (stdin->avl-tree state)
-		                                                           (empty-tree))) state))
+   (mv-let (things state)
+           (stdin->avl-tree state)
+      (let ((avl-tree (car things))
+            (width (cadr things))
+            (height (caddr things)))
+           (string-list->stdout (avl-tree->output-lines width height 0 (build-next-generation width height 0 avl-tree
+		                                                           (empty-tree))) state))))
