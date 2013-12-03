@@ -51,6 +51,12 @@ $(document).ready(function() {
 
     $('.play').click(function(){
         gameSpeed = $('.speed-box').val();
+        
+        // introduce a lower bound
+        if (gameSpeed < 100) {
+            gameSpeed = 100;
+        }
+        
         gameTimer = window.setInterval(function() {
             $.ajax({
                 url: '/nextgen',

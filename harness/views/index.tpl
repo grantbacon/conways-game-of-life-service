@@ -31,7 +31,7 @@
     <input type="radio" name="speed" id="speedMedium" class="speed-box" value="medium" /> <label for="speedMedium">Medium</label>
     <input type="radio" name="speed" id="speedFast" class="speed-box" value="medium" /> <label for="speedFast">Fast</label>
     -->
-    evolution speed (in milliseconds):  <input type="text" class="speed-box" name="speed" />
+    evolution speed (in milliseconds [>=100]):  <input type="text" class="speed-box" name="speed" />
     </div>
 </form>
 </div>
