@@ -4,12 +4,6 @@
 (include-book "doublecheck" :dir :teachpacks)
 (include-book "list-utilities" :dir :teachpacks)
 (include-book "testing" :dir :teachpacks)
-;tests for chr->cod
-(check-expect (chr->cod #\a) 65)
-(check-expect (chr->cod 5) nil)
-(check-expect (chr->cod #\SPACE) 0)
-(check-expect (chr->cod '(3)) nil)
-
 
 ;tests for get-avl-key
 (check-expect (get-avl-key 1 1 3) 4)
@@ -18,9 +12,25 @@
 (check-expect (get-avl-key 3 2 20) 43)
 
 ;tests for input-lines->avl-tree
+(check-expect (input-lines->avl-tree 0 0 1 (list (coerce "x" 'list)) (empty-tree)) 
+              (list 1 0 0 nil nil))
+(check-expect (input-lines->avl-tree 0 0 2 (list (coerce " x" 'list) (coerce "x " 'list)) (empty-tree))
+              (list 2 1 0 nil (list 1 2 0 nil nil)))
+(check-expect (input-lines->avl-tree 0 0 2 (list (coerce "x " 'list) (coerce " x" 'list)) (empty-tree))
+              (list 2 0 0 nil (list 1 3 0 nil nil)))
+(check-expect (input-lines->avl-tree 0 0 2 (list (coerce "xx" 'list) (coerce "x " 'list)) (empty-tree))
+              (list 2 1 0 (list 1 0 0 nil nil) (list 1 2 0 nil nil)))
+
+;tests for strings->char-lists
+(check-expect (strings->char-lists nil) nil)
+(check-expect (strings->char-lists ))
 
 ;tests for num-live-neighbors
 
-;tests for strings->char-lists
+;tests for build-next-generation-cell
 
-;tests for 
+;tests for build-next-generation-row
+
+;tests for build-next-generation
+
+;tests for tablecell

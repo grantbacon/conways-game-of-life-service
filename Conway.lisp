@@ -1,7 +1,9 @@
+(in-package "ACL2")
 (include-book "avl-rational-keys" :dir :teachpacks)
 (include-book "io-utilities" :dir :teachpacks)
 (include-book "io-utilities-ex" :dir :teachpacks)
 (set-state-ok t)
+
 
 
 (defun stdin->string (state)
