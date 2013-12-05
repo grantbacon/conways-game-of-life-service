@@ -23,19 +23,43 @@
 
 ;tests for strings->char-lists
 (check-expect (strings->char-lists nil) nil)
-(check-expect (strings->char-lists nil) nil)
-(check-expect (strings->char-lists nil) nil)
-(check-expect (strings->char-lists nil) nil)
+(check-expect (strings->char-lists (list "hello")) (list (list #\h #\e #\l #\l #\o)))
+(check-expect (strings->char-lists (list "x x" "  x" "x  ")) (list (list #\x #\Space #\x) (list #\Space #\Space #\x) (list #\x #\Space #\Space)))
+(check-expect (strings->char-lists (list "xxx" "xxx")) (list (list #\x #\x #\x) (list #\x #\x #\x)))
 
 ;tests for num-live-neighbors
 (check-expect (num-live-neighbors 0 1 1 0 0 (empty-tree)) 0)
-(check-expect (num-live-neighbors 0 1 1 0 0 (empty-tree)) 0)
-(check-expect (num-live-neighbors 0 1 1 0 0 (empty-tree)) 0)
-(check-expect (num-live-neighbors 0 1 1 0 0 (empty-tree)) 0)
+(check-expect (num-live-neighbors 9 4 4 1 1 
+                    (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
+                                                       (coerce "xxxx" 'list)
+                                                       (coerce "x  x" 'list)
+                                                       (coerce "   x" 'list))
+                                           (empty-tree)))
+               5)
+(check-expect (num-live-neighbors 9 3 3 1 1 
+                    (input-lines->avl-tree 0 0 3 (list (coerce "xxx" 'list)
+                                                       (coerce "xxx" 'list)
+                                                       (coerce "x x" 'list)
+                                                       )
+                                           (empty-tree))) 
+              7)
+(check-expect (num-live-neighbors 9 3 3 2 3 
+                    (input-lines->avl-tree 0 0 3 (list (coerce "xxx" 'list)
+                                                       (coerce "xxx" 'list)
+                                                       (coerce "x x" 'list)
+                                                       )
+                                           (empty-tree))) 
+              7)
 
 ;tests for build-next-generation-cell
 (check-expect (build-next-generation-cell 1 1 0 0 (empty-tree) (empty-tree)) nil)
-(check-expect (build-next-generation-cell 1 1 0 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation-row 4 4 1 1 (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
+                                                                                                          (coerce "xxxx" 'list)
+                                                                                                          (coerce "x  x" 'list)
+                                                                                                          (coerce "   x" 'list))
+                                                                                              (empty-tree))
+                                                               (empty-tree))
+               nil)
 (check-expect (build-next-generation-cell 1 1 0 0 (empty-tree) (empty-tree)) nil)
 (check-expect (build-next-generation-cell 1 1 0 0 (empty-tree) (empty-tree)) nil)
 
