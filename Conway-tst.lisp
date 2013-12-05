@@ -23,14 +23,47 @@
 
 ;tests for strings->char-lists
 (check-expect (strings->char-lists nil) nil)
-(check-expect (strings->char-lists ))
+(check-expect (strings->char-lists nil) nil)
+(check-expect (strings->char-lists nil) nil)
+(check-expect (strings->char-lists nil) nil)
 
 ;tests for num-live-neighbors
+(check-expect (num-live-neighbors 0 1 1 0 0 (empty-tree)) 0)
+(check-expect (num-live-neighbors 0 1 1 0 0 (empty-tree)) 0)
+(check-expect (num-live-neighbors 0 1 1 0 0 (empty-tree)) 0)
+(check-expect (num-live-neighbors 0 1 1 0 0 (empty-tree)) 0)
 
 ;tests for build-next-generation-cell
+(check-expect (build-next-generation-cell 1 1 0 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation-cell 1 1 0 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation-cell 1 1 0 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation-cell 1 1 0 0 (empty-tree) (empty-tree)) nil)
 
 ;tests for build-next-generation-row
+(check-expect (build-next-generation-row 1 1 0 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation-row 1 1 0 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation-row 1 1 0 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation-row 1 1 0 0 (empty-tree) (empty-tree)) nil)
 
 ;tests for build-next-generation
+(check-expect (build-next-generation 1 1 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation 1 1 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation 1 1 0 (empty-tree) (empty-tree)) nil)
+(check-expect (build-next-generation 1 1 0 (empty-tree) (empty-tree)) nil)
+
 
 ;tests for tablecell
+(check-expect (tablecell nil) (string-append "<td>&nbsp;</td>" nil))
+(check-expect (tablecell t) (string-append "<td class='live'>&nbsp;</td>" nil))
+
+;Properties
+
+;get-avl-key property tests
+(defproperty get-avl-key-prop 
+   (width :value (random-between 1 1000) 
+    x :value (random-between 0 width)
+    y :value (random-between 0 width))
+   (implies (and (natp x) (natp y) (natp width)) 
+            (equal (get-avl-key x y width) (+ x (* y width)))
+            )
+  )
