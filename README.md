@@ -27,4 +27,4 @@ Start-up
 
     python web_ui.py
 
-5. Connect to <http://localhost:8080/>
+5. Connect to <http://localhost:8085/>
