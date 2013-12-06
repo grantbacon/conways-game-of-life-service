@@ -1,0 +1,81 @@
+name: Bryan Cain
+date: October 1, 2013
+program: Concordance
+instructor: Dr. Page
+actual added lines: 117
+
+time log:
+	- date: October 8, 2013
+	  start time: 5:00PM
+	  end time: 6:44PM
+	  phase: code
+	  comment: implemented all functions
+	- date: October 8, 2013
+	  start time: 6:50PM
+	  end time: 7:21PM
+	  phase: code
+	  comment: make entries only for target words, not for anything starting with a letter
+	- date: October 22, 2013
+	  start time: 1:30AM
+	  end time: 1:40AM
+	  phase: code
+	  comment: replaced custom mergesort implementation with Dr. Page's mergesort that ACL2 actually admits
+	- date: October 22, 2013
+	  start time: 11:15PM
+	  end time: 12:12PM
+	  phase: testing
+	  comment: wrote properties and test cases for all non-I/O functions in implementation except scan
+	  
+new objects:
+
+	- name: lower
+	  estimated lines: 4
+	  type: function
+	- name: cmpletter
+	  estimated lines: 7
+	  type: function
+	- name: cmpword
+	  estimated lines: 7
+	  type: function
+	- name: isword
+	  estimated lines: 2
+	  type: function
+	- name: wordlen
+	  estimated lines: 4
+	  type: function
+	- name: entry
+	  estimated lines: 10
+	  type: function
+	- name: scan
+	  estimated lines: 6
+	  type: function
+	- name: main
+	  estimated lines: 8
+	  type: function
+	- name: read-input-file
+	  estimated lines: 16
+	  type: function
+	- name: write-output-file
+	  estimated lines: 16
+	  type: function
+	- name: format-line
+	  estimated lines: 5
+	  type: function
+
+defect log:
+	- date: October 8, 2013
+	  type: design
+	  fix time: 3
+	  comment: in the entry function, the code list for the right context is padded with nil instead of spaces (fixed by adding non-nil-prefix function)
+	- date: October 8, 2013
+	  type: implementation
+	  fix time: 7
+	  comment: ACL2 will not admit the scan function (fixed by adding theorems to make it admit the function)
+	- date: October 8, 2013
+	  type: design
+	  fix time: 31
+	  comment: words of length 1 such as "a" and with numbers such as "ACL2" being treated as target words
+	- date: October 22, 2013
+	  type: implementation
+	  fix time: 10
+	  comment: ACL2 not admitting custom mergesort function; fixed by using Dr. Page's merge-sort-pkg instead with a custom compare function

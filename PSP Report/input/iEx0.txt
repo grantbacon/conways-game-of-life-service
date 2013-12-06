@@ -1,0 +1,25 @@
+name: Paul Wright
+date: August 27, 2013
+program: Function Relationships
+instructor: Dr. Page
+actual added lines: 27
+
+time log:
+
+	- date: August 27, 2013
+	  start time: 7:00 AM
+	  end time: 9:00 AM
+	  phase: Code
+	  comment: Did everything
+	  
+new objects:
+
+	- name: relationships
+	  estimated lines: 20
+	  type: Code
+
+defect log:
+	- date: August 27, 2013
+	  type: Fixed PSP
+	  fix time: 10
+	  comment: Was not fully aware how to use PSP

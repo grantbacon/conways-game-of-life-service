@@ -1,0 +1,49 @@
+name: Joel Maupin
+date: October 8, 2013
+program: iEx4
+instructor: Dr. Page
+actual added lines: 0
+
+new objects:
+	- name: string-less-than
+		estimated lines: 9
+		type: function
+	- name: sort-list
+		estimated lines: 16
+		type: function
+	- name: to-lowercase
+		estimated lines: 5
+		type: function
+	- name: concordance-line
+		estimated lines: 15
+		type: function
+	- name: concordance-line-helper
+		estimated lines: 8
+		type: function
+
+time log:
+	- date: October 6, 2013
+	  start time: 7:00PM
+	  end time: 8:00PM
+	  phase: planning
+	  comment: First real study of the project description. Came to better understand what is meant by a concordance. Still pretty unsure about my initial design. Then again, always have to start somewhere.
+	- date: October 7, 2013
+	  start time: 5:00PM
+	  end time: 6:00PM
+	  phase: planning
+	  comment: Laid out some of the library functions I expect to implement when I try my hand at coding this project. 
+	- date: October 8, 2013
+	  start time: 9:00AM
+	  end time: 10:15AM 
+	  phase: planning
+	  comment: cleaned up my paragraphs about my design and submitted the design to the dropbox. 
+
+defect log:
+	- date: October 6, 2013
+		type: Conceptual
+		fix time: 1
+		comment: Thought a concordance was just a sorted list of words. Google came to correct me. 
+	- date: October 7, 2013
+		type: Conceptual
+		fix time: 1
+		comment: Couldn't decide if sorting was feasible in acl2, thankfully I found a site that described the algorithm for merge sort. Will likely incorporate that into my sort-list function. 

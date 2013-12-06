@@ -1,0 +1,52 @@
+name: Bryan Cain
+date: September 5, 2013
+program: Runs and peaks
+instructor: Dr. Page
+actual added lines: 43
+
+time log:
+
+	- date: September 5, 2013
+	  start time: 12:39PM
+	  end time: 2:45PM
+	  phase: code
+	  comment: implementation of next-run, run-length, and list-peaks-dips
+	- date: September 9, 2013
+	  start time: 1:20PM
+	  end time: 2:45PM
+	  phase: code
+	  comment: worked on getting ACL2 to admit list-peaks-dips, defining several properties in the process
+	- date: September 10, 2013
+	  start time: 1:32PM
+	  end time: 2:38PM
+	  phase: code
+	  comment: got ACL2 to admit list-peaks-dips, and implemented run-lengths and run-slopes so implementation is finished
+	- date: September 10, 2013
+	  start time: 5:00PM
+	  end time: 6:23PM
+	  phase: testing
+	  comment: finished the tests, sanity checks, and corner cases
+	  
+new objects:
+
+	- name: list-peaks-dips
+	  estimated lines: 7
+	  type: function
+	- name: run-lengths
+	  estimated lines: 7
+	  type: function
+	- name: run-slopes
+	  estimated lines: 7
+	  type: function
+	- name: next-run
+	  estimated lines: 10
+	  type: function
+	- name: run-length
+	  estimated lines: 4
+	  type: function
+
+defect log:
+	- date: September 5, 2013
+	  type: implementation
+	  fix time: 90
+	  comment: first property was interfering with admission of later properties

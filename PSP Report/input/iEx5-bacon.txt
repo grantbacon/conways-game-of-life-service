@@ -1,0 +1,119 @@
+name: Grant Bacon
+date: October 19, 2013
+program: Concordance
+instructor: Dr. Rex Page
+actual added lines: 213
+
+time log:
+
+	- date: October 8, 2013
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: design
+	  comment: created a design for the project with Team Zuse
+
+	- date: October 19, 2013
+	  start time: 4:20PM
+	  end time: 7:35PM
+	  phase: code
+	  comment: wrote functions:  cmpletter, cmpword, isletter, wordlen, lower, isletters
+	  
+	- date: October 21, 2013
+	  start time: 5:30PM
+	  end time: 7:55PM
+	  phase: code
+	  comment: created isword 
+
+	- date: October 22, 2013
+	  start time: 5:30PM
+	  end time: 10:55PM
+	  phase: code
+	  comment: created isword, entry, read-process-write, main, attempted to create scan 
+
+new objects:
+
+    - name: cmpletter
+      estimated lines: 5
+      type: computation
+
+    - name: lower
+      estimated lines: 3
+      type: computation
+
+    - name: cmpword
+      estimated lines: 5
+      type: computation
+
+    - name: wordlen
+      estimated lines: 2
+      type: computation
+    
+    - name: main
+      estimated lines: 5
+      type: IO
+
+    - name: entry
+      estimated lines: 5
+      type: computation
+
+    - name: scan
+      estimated lines: 10
+      type: IO
+
+    - name: isletter
+      estimated lines: 2
+      type: computation
+
+    - name: isletters
+      estimated lines: 5
+      type: computation
+
+    - name: isword
+      estimated lines: 5
+      type: computation
+
+reused objects:
+
+    - name: chrs->cods
+      type: computation
+      estimated base: 4
+
+    - name: cods->chrs
+      type: computation
+      estimated base: 4
+
+    - name: read-process-write
+      type: computation
+      estimated base: 12
+
+defect log:
+
+    - date: October 19, 2013
+      type: conceptual
+      fix time: 2
+      comment: avoided rewriting code by creating the isletter predicate
+
+    - date: October 19, 2013
+      type: logical
+      fix time: 7
+      comment: cmpword was not following the decision logic properly, was having issues with teh if statement, tried reorganizing it and was successful
+
+    - date: October 19, 2013
+      type: logical
+      fix time: 2
+      comment: was returning the wrong values for cmpword, realized they were in the if statement in reverse. simply inversed the solutions. works as expected.
+
+    - date: October 21, 2013
+      type: logical
+      fix time: 10
+      comment: attempted to write isword as described in spec, decided to include isletters to test for letters. used consp of cdr to check for len > 1
+
+    - date: October 22, 2013
+      type: logical
+      fix time: 25
+      comment: could not get scan to properly advacne text, unsure waht to do when there's nothing there
+
+    - date: October 22, 2013
+      type: life
+      fix time: 1
+      comment: grossly underestimated the time it would take me to complete this implementation, much like I do for my employer

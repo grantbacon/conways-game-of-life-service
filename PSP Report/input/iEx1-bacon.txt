@@ -1,0 +1,73 @@
+name: Grant Bacon
+date: September 10, 2013
+program: Peaks and Dips
+instructor: Dr. Rex Page
+actual added lines: 30
+
+time log:
+
+	- date: September 8, 2013
+	  start time: 5:30PM
+	  end time: 7:30PM
+	  phase: code
+	  comment: created next-great, next-less, lengths-inc, lengths-dec
+
+    - date: September 9, 2013
+      start time: 4:20PM
+      end time: 7:24PM
+      phase: code
+      comment: created run-partition, (lengths-inc, lengths-dec) altered to use next-great, next-less
+
+    - date: September 10, 2013
+      start time: 08:00AM
+      end time: 10:00aM
+      phase: code
+      comment: tried to fix run-partition.. to no avail.
+
+    - date: September 10, 2013
+      start time: 05:00PM
+      end time: 09:00PM
+      phase: code
+      comment: having a terrible time dealing with ACL2, could not figure out why my runpartition function will not work right!! becoming very frustrated
+	  
+new objects:
+    - name: lengths-inc
+      estimated lines: 15
+      type: computation
+
+    - name: lengths-dec
+      estimated lines: 15
+      type: computation
+    
+    - name: run-partition
+      estimated lines: 20
+      type: computation
+
+    - name: next-less 
+      estimated lines: 5
+      type: computation
+
+    - name: next-great
+      estimated lines: 5
+      type: computation
+
+defect log:
+	- date: September 9, 2013
+	  type: Logical
+	  fix time: 30
+	  comment: lenghts-inc/dec are not returning proper lengths, added an accumulator variable
+
+    - date: September 9, 2013
+      type: Logical
+      fix time: 45
+      comment: run-partition is not returning proper split lists, attempted shifting some input, attempted altering lengths-inc/dec
+
+    - date: September 10, 2013
+      type: Logical
+      fix time: 35
+      comment: run-partition will not give split lists for descending lists still, cannot figure out why its failing, attempted to use debugger.
+
+    - date: September 10, 2013
+      type: Logical
+      fix time: 75
+      comment: losing my mind as i attempt to fix run-partition. ACL2 error output is so bland and obnoxious. questioning my future as a software developer

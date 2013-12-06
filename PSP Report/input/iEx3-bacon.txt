@@ -1,0 +1,112 @@
+name: Grant Bacon
+date: September 30, 2013
+program: String Encoding
+instructor: Dr. Rex Page
+actual added lines: 104
+
+time log:
+
+	- date: September 29, 2013
+	  start time: 4:30PM
+	  end time: 10:20PM
+	  phase: code
+	  comment: wrote cod->chr, chr->cod, chrs->cods, cods->chrs, created roundtrip properties for them also
+	  
+	- date: September 30, 2013
+	  start time: 4:00PM
+	  end time: 07:50PM
+	  phase: code
+	  comment: fixed iEx2 decode function, wrote functionality to encode/decode a string
+
+	- date: October 02, 2013
+	  start time: 5:00PM
+	  end time: 06:50PM
+	  phase: code
+	  comment: added read-encode/decode-write functions, created predicates, added some sanity checks
+
+new objects:
+
+    - name: cod->chr
+      estimated lines: 2
+      type: computation
+
+    - name: chr->cod
+      estimated lines: 2
+      type: computation
+
+    - name: cods->chrs
+      estimated lines: 5
+      type: computation
+
+    - name: chrs->cods
+      estimated lines: 5
+      type: computation
+
+    - name: encode-str
+      estimated lines: 2
+      type: computation
+
+    - name: decode-str
+      estimated lines: 2
+      type: computation
+
+    - name: decode
+      estimated lines: 5
+      type: computation
+
+    - name: decode-tail
+      estimated lines: 5
+      type: computation
+
+    - name: encode-file
+      estimated lines: 10
+      type: IO
+
+    - name: decode-file
+      estimated lines: 10
+      type: IO
+
+    - name: read-encode-write
+      estimated lines: 10
+      type: IO
+
+    - name: read-decode-write
+      estimated lines: 10
+      type: IO
+
+    - name: encodable-charp
+      estimated lines: 2
+      type: computation
+
+    - name: decodable-charp
+      estimated lines: 2
+      type: computation
+
+    - name: encodable-charsp
+      estimated lines: 2
+      type: computation
+
+    - name: decodable-charsp
+      estimated lines: 2
+      type: computation
+
+defect log:
+	- date: September 29, 2013
+	  type: Logical
+	  fix time: 2
+	  comment: written property was using the wrong inversion of functions for the generated data, switched (cods->chrs (chrs->cods cs)) to (chrs->cods (cods->chrs cs))
+
+    - date: September 30, 2013
+      type: Logical
+      fix time: 5
+      comment: decode-str function was taking abnormally long amount of time to complete, decided to implement decode from linear-encoding in a tail recursive format
+
+    - date: October 02, 2013
+      type: Logical
+      fix time: 10
+      comment: I/O functions were not considering new line characters properly
+
+    - date: October 02, 2013
+      type: Logical
+      fix time: 10
+      comment: Some properites were failing, created predicates to check the encodability of a string or character

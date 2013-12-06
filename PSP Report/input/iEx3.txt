@@ -1,0 +1,72 @@
+name: Paul Wright
+date: September 28, 2013
+program: Text Encoding
+instructor: Dr. Page
+actual added lines: 87
+
+time log:
+
+	- date: September 28, 2013
+	  start time: 9:10 PM
+	  end time: 9:30 PM
+	  phase: Conceptual Design
+	  comment: None
+
+	- date: September 28, 2013
+	  start time: 9:30 PM
+	  end time: 10:15 PM
+	  phase: Code
+	  comment: It works!
+
+	- date: September 30, 2013
+	  start time: 2:30 PM
+	  end time: 7:30 PM
+	  phase: IO
+	  comment: Can't get the correct type of output for the ACL2 file IO system.
+
+	- date: October 1, 2013
+	  start time: 2:20 PM
+	  end time: 3:15 PM
+	  phase: IO
+	  comment: Still trying to figure out how translate from the input string full of integers to some kind of integer list...
+
+	- date: October 1, 2013
+	  start time: 5:00 PM
+	  end time: 7:00 PM
+	  phase: IO
+	  comment: Struggled getting file I/O to input and output the right types.
+
+new objects:
+
+	#### implementation of base functions ####
+
+	- name: chr->cod
+	  estimated lines: 4
+	  type: added
+
+	- name: cod->chr
+	  estimated lines: 4
+	  type: added
+
+	- name: chrs->cods
+	  estimated lines: 5
+	  type: added
+
+	- name: cods->chrs
+	  estimated lines: 5
+	  type: added
+
+	- name: encode-str
+	  estimated lines: 10
+	  type: added
+
+	- name: decode-str
+	  estimated lines: 10
+	  type: added
+
+defect log:
+
+	- date: October 1, 2013
+	  type: IO
+	  fix time: 120
+	  comment: Struggled getting file I/O to input and output the right types.

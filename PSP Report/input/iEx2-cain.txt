@@ -1,0 +1,77 @@
+name: Bryan Cain
+date: September 24, 2013
+program: Linear encoding
+instructor: Dr. Page
+actual added lines: 32
+
+time log:
+
+	- date: September 17, 2013
+	  start time: 2:10PM
+	  end time: 2:45PM
+	  phase: code
+	  comment: implementation of all functions
+	- date: September 17, 2013
+	  start time: 5:15PM
+	  end time: 5:32PM
+	  phase: verification
+	  comment: defined the properties/theorems
+	- date: September 17, 2013
+	  start time: 5:38PM
+	  end time: 5:44PM
+	  phase: wrote sanity checks [en,de]code-sanity-[1,2]
+	- date: September 18, 2013
+	  start time: 5:20PM
+	  end time: 5:23PM
+	  phase: testing
+	  comment: wrote corner case checks [en,de]code-corner-1
+	- date: September 19, 2013
+	  start time: 1:34PM
+	  end time: 1:40PM
+	  phase: testing
+	  comment: wrote sanity checks basep-sanity-[1-4]
+	- date: September 19, 2013
+	  start time: 5:37PM
+	  end time: 5:41PM
+	  phase: testing
+	  comment: wrote sanity checks codep-sanity-[1-2]
+	- date: September 24, 2013
+	  start time: 4:53PM
+	  end time: 5:07PM
+	  phase: testing
+	  comment: wrote sanity checks and corner cases codep-sanity-[3-4] and code-listp-[sanity,corner]-[1-2] and fixed codep bug
+	- date: September 24, 2013
+	  start time: 11:00PM
+	  end time: 11:05PM
+	  phase: testing
+	  comment: converted all sanity checks and corner cases from defthm to check-expect
+	  
+new objects:
+
+	- name: encode
+	  estimated lines: 5
+	  type: function
+	- name: decode
+	  estimated lines: 5
+	  type: function
+	- name: basep
+	  estimated lines: 1
+	  type: function
+	- name: codep
+	  estimated lines: 1
+	  type: function
+	- name: code-listp
+	  estimated lines: 5
+	  type: function
+	- name: function-equality
+	  estimated lines: 4
+	  type: theorem
+	- name: round-trip
+	  estimated lines: 4
+	  type: theorem
+
+defect log:
+	- date: September 24, 2013
+	  type: implementation
+	  fix time: 1
+	  comment: typo in codep (> instead of >=) was causing it to not accept 0 as an encodable integer

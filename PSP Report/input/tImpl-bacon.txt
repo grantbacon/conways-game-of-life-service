@@ -1,0 +1,157 @@
+name: Grant Bacon, Bryan Cain, Joel Maupin, Robert Wenrich, Paul Wright
+date: October 29, 2013
+program: Conways Game of Life
+instructor: Dr. Rex Page
+actual added lines: 251
+
+time log:
+
+	- date: October 30, 2013
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: design
+	  comment: created the initial repository, discussed the problem and how to solve it
+
+	- date: October 31, 2013
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: design
+	  comment: discussed the technologies to use, and how we would approach the implementation of conways game of life, drafted a design document and described our approach
+	  
+	- date: November 5, 2013
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: design
+	  comment: reviewed our design for potential flaws, and annotated which participants were responsible for addressing each flaw we discovered. 
+
+	- date: November 7, 2013
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: design
+	  comment: continued reviewing the design, and debating usage of standard I/O. 
+
+	- date: November 7, 2013
+	  start time: 6:00PM
+	  end time: 8:15PM
+	  phase: code
+	  comment: created basic html and javascript to provide a dynamically sized grid. 
+
+	- date: November 19, 2013
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: code review
+	  comment: began reviwing some of the ACL2 component and the beginning javascript for the harness. 
+      
+	- date: November 19, 2013
+	  start time: 7:20PM
+	  end time: 9:25PM
+	  phase: code
+	  comment: created clickable grid elements, added input boxes 
+
+	- date: November 21, 2013
+	  start time: 3:00PM
+	  end time: 4:20PM
+	  phase: code
+	  comment: remove unneeded dependency, created bottle routes for API
+
+	- date: November 21, 2013
+	  start time: 8:25PM
+	  end time: 11:13PM
+	  phase: code
+	  comment: improved asethetics, loaded binary from relative path
+
+	- date: November 22, 2013
+	  start time: 2:45PM
+	  end time: 4:55PM
+	  phase: code
+	  comment: write to stdin for subprocesses, created a python echo script to emulate actions, made encodeGrid function to parse table for living cells
+
+	- date: November 26, 2013
+	  start time: 1:24PM
+	  end time: 2:45PM
+	  phase: code
+	  comment: change format for encoding, update CSS for aesthetics and ease-of-use, update javascript to parse better. 
+
+	- date: December 01, 2013
+	  start time: 5:24PM
+	  end time: 6:45PM
+	  phase: code
+	  comment: test configuration with working executable, remove echo script. update readme with instructions for usage. 
+
+	- date: December 01, 2013
+	  start time: 5:24PM
+	  end time: 6:45PM
+	  phase: code
+      comment: update javascript to give functionality to clickable buttons, and modify grid properly
+
+	- date: December 03, 2013
+	  start time: 3:00PM
+	  end time: 4:15PM
+	  phase: code
+      comment: added support for changing speed of generation updating by millisecond
+
+new objects:
+
+    - name: index.tpl
+      estimated lines: 45
+      type: harness-markup
+
+    - name: nextgen-post
+      estimated lines: 5
+      type: harness-api
+
+    - name: relative_path
+      estimated lines: 2
+      type: harness-api
+    
+    - name: index-get
+      estimated lines: 2
+      type: harness-api
+
+    - name: encodeGrid
+      estimated lines: 15
+      type: harness-js
+
+    - name: updateGrid
+      estimated lines: 15
+      type: harness-js
+
+    - name: playEvent
+      estimated lines: 15
+      type: harness-js
+
+    - name: stopEvent
+      estimated lines: 3
+      type: harness-js
+
+defect log:
+
+    - date: November 21, 2013
+      type: logical
+      fix time: 17
+      comment: could not read executables across systems of different types, fixed by using a relative path
+
+    - date: November 21, 2013
+      type: logical
+      fix time: 10
+      comment: config module was not in default python package for all systems, refactored code to not use such a module
+
+    - date: November 22, 2013
+      type: logical
+      fix time: 30
+      comment: play button was not pulling proper data from web-server. updated web server to use proper HTTP method (POST).
+
+    - date: November 22, 2013
+      type: logical
+      fix time: 15
+      comment: writing to STD input was leaving subprocesses hanging. updated to use python's "communicate" function from subprocess module
+
+    - date: November 26, 2013
+      type: logical
+      fix time: 2
+      comment: harness was representing live cells by "X" when it needed to be representing them with "x". 
+
+    - date: November 26, 2013
+      type: aesthetic
+      fix time: 2
+      comment: grid elements were too small. updated minimum width to 20px.

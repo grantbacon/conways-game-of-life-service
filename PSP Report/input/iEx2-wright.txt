@@ -1,0 +1,64 @@
+name: Paul Wright
+date: September 15, 2013
+program: Linear Encoding
+instructor: Dr. Page
+actual added lines: 48
+
+time log:
+
+	- date: September 15, 2013
+	  start time: 9:30 AM
+	  end time: 2:15 PM
+	  phase: Conceptual Design & Code
+	  comment: Initial implementation
+
+	- date: September 16, 2013
+	  start time: 4:15 PM
+	  end time: 5:30 PM
+	  phase: Code
+	  comment: Continued coding main functions.
+
+	- date: September 23, 2013
+	  start time: 4:00 PM
+	  end time: 4:45 PM
+	  phase: Sanity-checks and corner cases
+	  comment: Created sanity checks and corner cases.
+
+new objects:
+
+	#### implementation of base functions ####
+
+	- name: encode
+	  estimated lines: 4
+	  type: added
+
+	- name: decode
+	  estimated lines: 4
+	  type: added
+
+	- name: encodeit
+	  estimated lines: 4
+	  type: added
+
+	- name: decodeit
+	  estimated lines: 4
+	  type: added
+
+	- name: basep
+	  estimated lines: 2
+	  type: added
+
+	- name: codep
+	  estimated lines: 2
+	  type: added
+
+	- name: code-listp
+	  estimated lines: 2
+	  type: added
+
+defect log:
+
+	- date: September 16, 2013
+	  type: Fundamental
+	  fix time: 60
+	  comment: Discussed with you about properties and theorems, removed properties as they would be too difficult to prove.

@@ -1,0 +1,44 @@
+name: Paul Wright
+date: December 6, 2013
+program: tImpl
+instructor: Dr. Page
+actual added lines: 0
+
+time log:
+
+	- date: October 22, 2013
+	  start time: 3:00 PM
+	  end time: 4:15 PM
+	  phase: Design
+	  comment: 
+
+	- date: October 31, 2013
+	  start time: 3:00 PM
+	  end time: 4:15 PM
+	  phase: Design
+	  comment: 
+
+	- date: November 5, 2013
+	  start time: 3:00 PM
+	  end time: 4:15 PM
+	  phase: Design Review
+	  comment: 
+
+	- date: November 19, 2013
+	  start time: 3:00 PM
+	  end time: 4:15 PM
+	  phase: Code Review
+	  comment: 
+
+new objects:
+
+	- name: NA
+	  estimated lines: 0
+	  type: added
+
+defect log:
+
+	- date: November 21, 2013
+	  type: Code
+	  fix time: 5
+	  comment: avl-insert wasn't receiving proper input.

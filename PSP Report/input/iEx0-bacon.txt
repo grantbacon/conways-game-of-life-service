@@ -1,0 +1,40 @@
+name: Grant Bacon
+date: August 26, 2013
+program: Property Based Testing
+instructor: Dr. Rex Page
+actual added lines: 22
+
+time log:
+
+	- date: August 26, 2013
+	  start time: 5:00PM
+	  end time: 6:22PM
+	  phase: code
+	  comment: created property based tests as outlined in project
+	  
+new objects:
+    - name: append/cons defproperty
+      estimated lines: 4
+      type: IO
+
+    - name: take/append defproperty
+      estimated lines: 4
+      type: IO
+    
+    - name: nthcdr/append defproperty
+      estimated lines: 4
+      type: IO
+
+    - name: maxs function
+      estimated lines: 3
+      type: IO
+
+    - name: maxr/maxs defproperty
+      estimated lines: 4
+      type: IO
+
+defect log:
+	- date: August 26, 2013
+	  type: Logical
+	  fix time: 1
+	  comment: thought appends was cons, was not.

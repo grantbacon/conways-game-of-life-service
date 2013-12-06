@@ -1,0 +1,63 @@
+name: Grant Bacon
+date: September 23, 2013
+program: Linear Encoding
+instructor: Dr. Rex Page
+actual added lines: 123
+
+time log:
+
+	- date: September 23, 2013
+	  start time: 7:30PM
+	  end time: 12:20AM
+	  phase: code
+	  comment: created predicates, wrote and improved encode, became deeply confused about inverse modulo operations...
+	  
+	- date: September 24, 2013
+	  start time: 4:55PM
+	  end time: 09:35PM
+	  phase: code
+	  comment: attempting to implement decode, began writing some properties for testing.  
+
+new objects:
+    - name: basep
+      estimated lines: 2
+      type: computation
+
+    - name: codep
+      estimated lines: 2
+      type: computation
+    
+    - name: encode
+      estimated lines: 15
+      type: computation
+
+    - name: decode
+      estimated lines: 15
+      type: computation
+
+defect log:
+	- date: September 23, 2013
+	  type: Logical
+	  fix time: 1
+	  comment: thought defpred was a function, it was not. attempted to find ACL definition for a predicate, decided to simply use defun.
+
+    - date: September 23, 2013
+      type: Logical
+      fix time: 5
+      comment: Defined encode, its "ABORTING..." but no  good reason why. I imagine recursion is not working properly, but I feel like the data set is being reduced properly...
+
+    - date: September 23, 2013
+      type: Logical
+      fix time: 2
+      comment: Read Dr Page's suggestions online, then realized I was using len to check for lists... converted it to (consp (cdr xs)) because consp is a rather cheap function also made it easier for me to reason mentally about the reduction of lists over recursion
+
+    - date: September 24, 2013
+      type: Logical
+      fix time: 20
+      comment: Realized the constraint of x_i < m make the function one-to-one, thus eliminating the possibility of modular overflow (where multiple values can represent the same thing). In fact, x + y <= 2m - 2 according to my shabby mathematics
+
+    - date: September 24, 2013
+      type: Logical
+      fix time: 5
+      comment: Was reading the assignment definition wrong. Thought x_(n+1) = m - 1 regardless, and that decode was not fed m, but was to be given m explicitly... 
+    

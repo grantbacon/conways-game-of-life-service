@@ -1,0 +1,4 @@
+PSP is throwing the error:
+"Invalid month: october, did you mean October?"
+
+"october" is nowhere in the file, all instances on the month October are capitalized correctly. I have no idea why it won't read the file.
