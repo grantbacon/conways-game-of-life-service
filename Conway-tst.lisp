@@ -155,3 +155,12 @@
    (equal (build-next-generation-row width height 0 (empty-tree) (empty-tree) )
           (build-next-generation-cell width height 0 y (empty-tree) (empty-tree)))
    )
+
+(defproperty get-avl-key-prop2 
+   (width :value (random-between 1 1000) 
+    x :value (random-between 0 width)
+    y :value (random-between 0 width))
+   (implies (and (natp x) (natp y) (natp width)) 
+            (equal (get-avl-key x y width) (+ x (* y width)))
+            )
+  )
