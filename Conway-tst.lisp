@@ -139,3 +139,19 @@
             (equal (get-avl-key x y width) (+ x (* y width)))
             )
   )
+
+(defproperty empty-tree-nil-prop 
+   (width :value (random-between 1 1000)
+    height :value (random-between 1 1000) 
+    x :value (random-between 0 width)
+    y :value (random-between 0 height))
+    (equal (build-next-generation width height y (empty-tree) (empty-tree))
+             nil)
+    )
+(defproperty single-comlumn-tree-prop 
+   (width :value 1 
+    height :value (random-between 1 1000) 
+    y :value (random-between 1 height))
+   (equal (build-next-generation-row width height 0 (empty-tree) (empty-tree) )
+          (build-next-generation-cell width height 0 y (empty-tree) (empty-tree)))
+   )

@@ -14,4 +14,12 @@
     )
   )
 
+(defthm empty-tree-always-nil 
+  (implies (and (posp y) (posp width) (posp height) (< y height))
+    (equal (build-next-generation width height y (empty-tree) (empty-tree))
+      nil
+      )
+    )
+  )
+
 ;TODO make another verification theorem
