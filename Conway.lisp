@@ -161,7 +161,7 @@
                                                                (empty-tree)))
 
 ; test input 4
-(avl-tree->output-lines 4 4 0 (build-next-generation 4 4 0 (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
+(avl-tree->output-lines 4 4 0 (build-next-generation 4 4 3 (input-lines->avl-tree 0 0 4 (list (coerce "x xx" 'list)
                                                                                               (coerce "xxxx" 'list)
                                                                                               (coerce "x  x" 'list)
                                                                                               (coerce "   x" 'list))
