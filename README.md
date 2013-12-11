@@ -1,8 +1,7 @@
-timpl
+Conway's Game of Life Service
 ===============
 
-CS 4263 SE Project (tImpl)
-Implementation of Conway's Game of Life in a web-browser.
+An implementation of Conway's Game of Life using ACL2. Python Bottle is used to provide a front end to the game, which can in turn be hosted as a service.
 
 Usage
 =============
@@ -12,7 +11,6 @@ Requirements
 
 + python2.7
 + proofpad (or some way to compile ACL2 code)
-+ git
 
 Start-up
 --------------
