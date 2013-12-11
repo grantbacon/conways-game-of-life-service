@@ -15,14 +15,10 @@ Requirements
 Start-up
 --------------
 
-1. Clone the repository to a directory on your computer.
-
-    git clone git@github.com:grantbacon/timpl.git
-
-2. Compile Conway.lisp into an executable
-3. Edit 'harness/web_ui.py' to point to the executable you compiled
-4. Run the web UI (using terminal/command line)
+1. Compile Conway.lisp into an executable
+2. Edit 'harness/web_ui.py' to point to the executable you compiled
+3. Run the web UI (using terminal/command line)
 
     python web_ui.py
 
-5. Connect to <http://localhost:8085/>
+4. Connect to <http://localhost:8085/>
